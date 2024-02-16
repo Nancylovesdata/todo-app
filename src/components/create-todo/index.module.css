@@ -5,13 +5,13 @@
 } */
 
 
-.createTodoSection {
+.createTodoSection{
     position: absolute;
     top: 120px;
     width: 60%;
     left: 20%;
     background-color: white;
-    /* height: 35px; */
+    height: 35px;
     border-radius: 5px;
     display:flex;
     padding: 5px;
