@@ -14,11 +14,20 @@
     height: 35px;
     border-radius: 5px;
     display:flex;
-    padding: 5px;
+    padding: 1px 3px;
+   
 
 }
 
 .createTodoInput{
     width: 100%;
     border: none;
+}
+
+.createTodoInput:focus{
+    outline: none;
+}
+
+.btn{
+    background-color: green;
 }

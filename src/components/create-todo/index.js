@@ -16,7 +16,7 @@ function CreateTodo() {
         className={styles.createTodoInput}
         placeholder="Start typing..."
       />
-      <button
+      <button className={`btn btn-primary ${styles.btn}` }
         onClick={() => setTodos([...todos, todo])}
       >Create</button>
     </section>

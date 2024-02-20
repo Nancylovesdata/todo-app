@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {useLocalStorage} from "usehooks-ts";
+import TodoItem from "../todo-item"
 
 
 function TodoList() {
@@ -16,11 +17,11 @@ function TodoList() {
 
     // useEffect(getTodos, []);
     return (
-        <ul>
-            {todos.map(function (todo, index) {
-                return <li key={index}>{todo}</li>
-            })}
-        </ul>
+        <ul className="list-group">
+            {todos.map( (todo, index)=> <TodoItem todo={todo} Index={index}/>
+
+                     )};
+                     </ul>
     );
 }
 
