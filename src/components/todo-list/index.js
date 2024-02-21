@@ -17,11 +17,18 @@ function TodoList() {
 
     // useEffect(getTodos, []);
     return (
+        <section>
+        <button
+         className="btn btn-danger"
+        onClick={() => setTodos=([])}
+        >Clear Todos</button>
+        
         <ul className="list-group">
-            {todos.map( (todo, index)=> <TodoItem todo={todo} Index={index}/>
+            {todos.map( function(todo, index){return <TodoItem todo={todo} index={index}/>
 
-                     )};
+    })};
                      </ul>
+                     </section>
     );
 }
 
