@@ -1,34 +1,51 @@
 import { useState, useEffect } from "react";
-import {useLocalStorage} from "usehooks-ts";
+import { useLocalStorage } from "usehooks-ts";
 import TodoItem from "../todo-item"
 
 
 function TodoList() {
-    // let todos [];
-    const [todos, setTodos] = useLocalStorage("TODO_KEY",[]);
-    
-    // function getTodos() {
-    //     // Get all todos from local storage and store it.
-    //     let todos = JSON.parse(localStorage.getItem("TODO_KEY")) || [];
+    const [todos, setTodos] = useState([]);
 
-    //     //Update React State   
-    //     setTodos(todos);
-    // }
+    async function clearTodos() {
+        // Delete all todos from the API
+        const url = "http://localhost:4000/todos";
+        const delresponse = await fetch (url,{
+            method: "delete"
+        })
+       console.log(delresponse) 
+        // Update React state to empty array
+    }
 
-    // useEffect(getTodos, []);
+    async function getTodos() {
+        // Get all todos from API.
+        const url = "http://localhost:4000/todos";
+        const response = await fetch(url)
+        const data = await response.json();
+        // Update React State  
+        console.log(data) 
+        setTodos(data)
+    }
+
+    // Use useEfect to run getTodos
+    useEffect(() => {
+        getTodos();
+
+    }, []);
+
     return (
         <section>
-        <button
-         className="btn btn-danger"
-        onClick={() => setTodos=([])}
-        >Clear Todos</button>
-        
-        <ul className="list-group">
-            {todos.map( function(todo, index){return <TodoItem todo={todo} index={index}/>
+            <button
+                className="btn btn-danger"
+                onClick={clearTodos}
+            >Clear Todos</button>
 
-    })};
-                     </ul>
-                     </section>
+            <ul className="list-group">
+                {todos.map(function (todo, index) {
+                    return <TodoItem key={todo._id} todo={todo.title} index={index} />
+
+                })}
+            </ul>
+        </section>
     );
 }
 
